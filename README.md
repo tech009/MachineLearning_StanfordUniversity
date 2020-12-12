@@ -1,2 +1,2 @@
 # MachineLearning_StanfordUniversity
-Solved Exercises for Stanford University - Machine Learning
+All Solved Exercises for Stanford University - Machine Learning
