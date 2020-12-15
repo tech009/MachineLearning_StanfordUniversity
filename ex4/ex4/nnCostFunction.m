@@ -62,6 +62,8 @@ J = J/m;
 
 T1 = Theta1.^2;
 T2 = Theta2.^2;
+T1 = T1(:,2:end);
+T2 = T2(:,2:end);
 
 lr = sum(sum(T1)) + sum(sum(T2));
 lr = lr * (lambda/(2*m));
@@ -83,6 +85,9 @@ J = J + lr;
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
+
+
+
 %
 % Part 3: Implement regularization with the cost function and gradients.
 %
