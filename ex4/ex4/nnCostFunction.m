@@ -85,7 +85,17 @@ J = J + lr;
 %         Hint: We recommend implementing backpropagation using a for-loop
 %               over the training examples if you are implementing it for the 
 %               first time.
+for t = 1:m
+	a_1 = X(t,:);
+	a_1 = [1 , a_1];
+	z_2 = Theta1 * a_1';
+	a_2 = sigmoid(z_2);
+	a_2 = [1 ; a_2];
+	z_3 = Theta2 * a_2;
+	a_3 = sigmoid(z_3);
 
+	del_3 = a_3 - yk(t,:)';
+	del_2 = 
 
 
 %
