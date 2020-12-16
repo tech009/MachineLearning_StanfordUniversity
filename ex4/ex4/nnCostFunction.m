@@ -95,7 +95,10 @@ for t = 1:m
 	a_3 = sigmoid(z_3);
 
 	del_3 = a_3 - yk(t,:)';
-	del_2 = 
+	del_2 = Theta2'*del_3.*sigmoidGradient(z_2);
+
+	del_2 = del_2(2:end);
+	
 
 
 %
