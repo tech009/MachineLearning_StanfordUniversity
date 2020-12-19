@@ -88,16 +88,24 @@ J = J + lr;
 for t = 1:m
 	a_1 = X(t,:);
 	a_1 = [1 , a_1];
-	z_2 = Theta1 * a_1';
+	a_1 = a_1';
+	z_2 = Theta1 * a_1;
 	a_2 = sigmoid(z_2);
 	a_2 = [1 ; a_2];
 	z_3 = Theta2 * a_2;
 	a_3 = sigmoid(z_3);
 
 	del_3 = a_3 - yk(t,:)';
-	del_2 = Theta2'*del_3.*sigmoidGradient(z_2);
+	del_2 = (Theta2'*del_3).*a_2.*(1-a_2);
 
 	del_2 = del_2(2:end);
+
+	Theta1_grad = Theta1_grad + (del_2*a_1');
+	Theta2_grad = Theta2_grad + (del_3*a_2');
+endfor
+
+Theta1_grad = Theta1_grad/m;
+Theta2_grad = Theta2_grad/m;
 	
 
 
@@ -110,22 +118,15 @@ for t = 1:m
 %               and Theta2_grad from Part 2.
 %
 
+cons = lambda/m;
+T1 = Theta1(:,2:end);
+T2 = Theta2(:,2:end);
 
+T1 = cons*T1;
+T2 = cons*T2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Theta1_grad(:,2:end) = Theta1_grad(:,2:end) + T1;
+Theta2_grad(:,2:end) = Theta2_grad(:,2:end) + T2;
 
 
 % -------------------------------------------------------------
