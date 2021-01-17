@@ -10,6 +10,7 @@ K = size(centroids, 1);
 
 % You need to return the following variables correctly.
 idx = zeros(size(X,1), 1);
+m = size(X, 1);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Go over every example, find its closest centroid, and store
@@ -20,8 +21,20 @@ idx = zeros(size(X,1), 1);
 %
 % Note: You can use a for-loop over the examples to compute this.
 %
+for i = 1:m
+	c = 9999999999;
+	for j = 1:K
 
+		tmp = X(i, :) - centroids(j, :);
+		tmp = tmp.^2;
+		new_c = sum(tmp);
+		if new_c < c
+			c = new_c;
+			idx(i) = j;
+		endif;
 
+	endfor;
+endfor;
 
 
 
